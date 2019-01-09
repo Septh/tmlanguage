@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "id": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "id": "https://raw.githubusercontent.com/Septh/tmlanguage/master/tmlanguage.json",
   "$ref": "#/definitions/root",
   "definitions": {
     "root": {
@@ -134,7 +134,7 @@
       "anyOf": [
         {
           "type": "string",
-          "pattern": "^[\\w0-9]+(\\.[\\w0-9-]+)*$"
+          "pattern": "^\\w[\\w-]*(?:(?:\\.|\\ )\\w[\\w-]*)*$"
         },
         {
           "type": "string",
