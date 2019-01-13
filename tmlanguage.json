@@ -11,14 +11,6 @@
             "type": "string",
             "pattern": "^(?:source|text)(?:\\.[\\w$@][\\w\\-$@]*)+$"
         },
-        "foldingStartMarker": {
-            "description": "Regular expression that lines (in the document) are matched against. If a line matches the pattern, it starts a foldable block.",
-            "type": "string"
-        },
-        "foldingStopMarker": {
-            "description": "Regular expressions that lines (in the document) are matched against. If a line matches pattern, it ends a foldable block.",
-            "type": "string"
-        },
         "fileTypes": {
             "description": "An array of file type extensions that the grammar should (by default) be used with.",
             "type": "array",
@@ -27,11 +19,19 @@
             }
         },
         "firstLineMatch": {
-            "description": "A regular expression which is matched against the first line of the document (when it is first loaded). If it matches, the grammar is used for the document.",
+            "description": "A regular expression which is matched against the first line of the document when it is first loaded. If it matches, the grammar is used for the document.",
             "type": "string"
         },
         "uuid": {
             "description": "When the grammer is part of a larger bundle (ie., grammer + theme + whatever), the uuid helps classify which file is a part of which bundle.",
+            "type": "string"
+        },
+        "foldingStartMarker": {
+            "description": "Regular expression that lines (in the document) are matched against. If a line matches the pattern, it starts a foldable block.",
+            "type": "string"
+        },
+        "foldingStopMarker": {
+            "description": "Regular expressions that lines (in the document) are matched against. If a line matches pattern, it ends a foldable block.",
             "type": "string"
         },
         "patterns": {
@@ -43,7 +43,7 @@
             "$ref": "#/definitions/repository"
         },
         "injections": {
-            "description": "???",
+            "description": "A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
             "$ref": "#/definitions/repository"
         },
         "injectionSelector": {
@@ -53,7 +53,10 @@
     "required": [ "scopeName", "patterns" ],
     "dependencies": {
         "foldingStartMarker": [ "foldingStopMarker" ],
-        "foldingStopMarker": [ "foldingStartMarker" ]
+        "foldingStopMarker": [ "foldingStartMarker" ],
+        "injections": {
+            "not": { "required": [ "injectionSelector" ] }
+        }
     },
     "additionalProperties": true,
 
@@ -173,6 +176,10 @@
                 "patterns": {
                     "description": "An array with the actual rules used to parse the matched content.",
                     "$ref": "#/definitions/patterns"
+                },
+                "repository": {
+                    "description": "A dictionary (i.e. key/value pairs) of rules which can be included from other places in the grammar. The key is the name of the rule and the value is the actual rule.",
+                    "$ref": "#/definitions/repository"
                 }
             },
             "additionalProperties": false,
