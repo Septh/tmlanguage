@@ -1,6 +1,5 @@
 {
     "$schema": "http://json-schema.org/draft-06/schema#",
-    "$id": "https://raw.githubusercontent.com/Septh/tmlanguage/master/tmlanguage.json",
 
     "title": "tmLanguage",
     "description": "Schema for language grammar description files in Textmate and compatible editors.",
