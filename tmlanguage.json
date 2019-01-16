@@ -9,7 +9,7 @@
         "scopeName": {
             "description": "This should be a unique name for the grammar, following the convention of being a dot-separated name where each new (left-most) part specializes the name. Normally it would be a two-part name where the first is either `text` or `source` and the second is the name of the language or document type. But if you are specializing an existing type, you probably want to derive the name from the type you are specializing. For example Markdown is `text.html.markdown` and Ruby on Rails (rhtml files) is `text.html.rails`. The advantage of deriving it from (in this case) `text.html` is that everything which works in the `text.html` scope will also work in the `text.html.«something»` scope (but with a lower precedence than something specifically targeting `text.html.«something»`).",
             "type": "string",
-            "pattern": "^(?:source|text)(?:\\.[\\w$@][\\w\\-$@]*)+$"
+            "pattern": "^[\\w$@][\\w\\-$@]*(?:\\.[\\w$@][\\w\\-$@]*)*$"
         },
         "fileTypes": {
             "description": "An array of file type extensions that the grammar should (by default) be used with.",
@@ -42,12 +42,13 @@
             "description": "A dictionary (i.e. key/value pairs) of rules which can be included from other places in the grammar. The key is the name of the rule and the value is the actual rule.",
             "$ref": "#/definitions/repository"
         },
-        "injections": {
-            "description": "A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
-            "$ref": "#/definitions/repository"
-        },
         "injectionSelector": {
+            "description": "The key is a scope selector that specifies which scope(s) the current grammar should be injected in.",
             "type": "string"
+        },
+        "injections": {
+            "description": "[VS Code only] A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
+            "$ref": "#/definitions/repository"
         }
     },
     "required": [ "scopeName", "patterns" ],
@@ -64,13 +65,8 @@
 
         "boolean-or-integer": {
             "oneOf": [
-                {
-                    "type": "boolean"
-                },
-                {
-                    "type": "number",
-                    "enum": [ 0, 1 ]
-                }
+                { "type": "boolean" },
+                { "type": "number", "enum": [ 0, 1 ] }
             ]
         },
 
@@ -146,7 +142,7 @@
                     "type": "string"
                 },
                 "while": {
-                    "description": "A regular expression pattern that continues the multi-line block started by the `begin` key while it holds true.",
+                    "description": "A regular expression pattern that, when matched, continues the multi-line block started by the `begin` key.",
                     "type": "string"
                 },
                 "applyEndPatternLast": {
@@ -158,7 +154,7 @@
                     "type": "string"
                 },
                 "captures": {
-                    "description": "This key allows you to assign attributes to the captures of the `match`, `begin`, `end` or `while`patterns. Using the `captures` key for a `begin`/`end` rule is short-hand for giving both `beginCaptures` and `endCaptures` with same values. The value of this key is a dictionary with the key being the capture number and the value being a dictionary of attributes to assign to the captured text.",
+                    "description": "This key allows you to assign attributes to the captures of the `match`, `begin`, `end` and `while`patterns. Using the `captures` key for a `begin`/`end` rule is short-hand for giving both `beginCaptures` and `endCaptures` with same values. The value of this key is a dictionary with the key being the capture number and the value being a dictionary of attributes to assign to the captured text.",
                     "$ref": "#/definitions/captures"
                 },
                 "beginCaptures": {

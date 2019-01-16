@@ -8,7 +8,20 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/validate-vscode-grammars.js"
+            "program": "${workspaceFolder}/validate-grammar.js",
+            "args": [ "${input:path}", "${input:glob}" ]
         }
-    ]
+    ],
+    "inputs": [
+        {
+            "id": "path",
+            "description": "What path do you want to scan for grammar files?",
+            "type": "promptString"
+        },
+        {
+            "id": "glob",
+            "description": "What files do you want to scan?",
+            "type": "promptString"
+        }
+     ]
 }

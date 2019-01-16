@@ -2,31 +2,23 @@
   "name": "tmlanguage",
   "version": "1.0.0",
   "description": "A somewhat improved version of https://github.com/martinring/tmlanguage",
-  "scripts": {
-    "validate-vsc": "node validate-vscode-grammars.js",
-    "validate": "node validate-vscode-grammars.js "
-  },
+  "keywords": [ "Textmate", "grammar", "tmLanguage", "JSON", "schema" ],
+  "author": "Septh",
+  "license": "MIT",
+  "homepage": "https://github.com/Septh/tmlanguage#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Septh/tmlanguage.git"
   },
-  "keywords": [
-    "Textmate",
-    "grammar",
-    "tmLanguage",
-    "JSON",
-    "schema"
-  ],
-  "author": "Septh",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Septh/tmlanguage/issues"
   },
-  "homepage": "https://github.com/Septh/tmlanguage#readme",
+  "scripts": {
+    "validate-grammar": "node validate-grammar.js "
+  },
   "dependencies": {},
   "devDependencies": {
     "chalk": "^2.4.2",
-    "fs-jetpack": "^2.2.0",
     "glob": "^7.1.3",
     "jsonfile": "^5.0.0",
     "jsonschema": "^1.2.4"
