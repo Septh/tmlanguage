@@ -46,7 +46,7 @@
             "type": "string"
         },
         "injections": {
-            "description": "[VS Code only] A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
+            "description": "[VS Code only, it seems] A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
             "$ref": "#/definitions/repository"
         }
     },
@@ -121,7 +121,7 @@
                     "type": "string"
                 },
                 "disabled": {
-                    "description": "Marks the rule as disabled. A disabled rule is ignored by the tokenization engine.",
+                    "description": "Marks the rule as disabled. A disabled rule should be ignored by the tokenization engine.",
                     "$ref": "#/definitions/boolean-or-integer"
                 },
                 "include": {
@@ -141,7 +141,7 @@
                     "type": "string"
                 },
                 "while": {
-                    "description": "A regular expression pattern that, when matched, continues the multi-line block started by the `begin` key.",
+                    "description": "A regular expression pattern that, while matched, continues the multi-line block started by the `begin` key.",
                     "type": "string"
                 },
                 "applyEndPatternLast": {
@@ -166,7 +166,7 @@
                 },
                 "whileCaptures": {
                     "description": "This key allows you to assign attributes to the captures of the `while` pattern. The value of this key is a dictionary with the key being the capture number and the value being a dictionary of attributes to assign to the captured text.",
-                    "type": "string"
+                    "$ref": "#/definitions/captures"
                 },
                 "patterns": {
                     "description": "An array with the actual rules used to parse the matched content.",
