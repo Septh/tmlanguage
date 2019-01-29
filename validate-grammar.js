@@ -31,7 +31,7 @@ function fileType(name) {
     return false
 }
 
-json.readFile(path.join(__dirname, 'tmLanguage.json')).then(schema => {
+json.readFile(path.join(__dirname, 'tmLanguage.schema.json')).then(schema => {
 
     const scan = {
         dir: DEFAULT_PATH,
