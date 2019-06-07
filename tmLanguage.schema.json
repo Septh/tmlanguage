@@ -46,17 +46,14 @@
             "type": "string"
         },
         "injections": {
-            "description": "[VS Code only, it seems] A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
+            "description": "A dictionary (i.e. key/value pairs) of rules which will be injected into an existing grammar. The key is the target scope of the parent grammar and the value is the actual rule to inject.",
             "$ref": "#/definitions/repository"
         }
     },
     "required": [ "scopeName", "patterns" ],
     "dependencies": {
         "foldingStartMarker": [ "foldingStopMarker" ],
-        "foldingStopMarker": [ "foldingStartMarker" ],
-        "injections": {
-            "not": { "required": [ "injectionSelector" ] }
-        }
+        "foldingStopMarker": [ "foldingStartMarker" ]
     },
     "additionalProperties": true,
 
